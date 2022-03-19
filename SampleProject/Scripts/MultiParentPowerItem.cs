@@ -8,9 +8,9 @@ using UnityEngine;
 
 namespace SampleProject.Scripts {
     class MultiParentPowerItem : PowerItem {
-        public List<PowerItem> Parents = new List<PowerItem>();
+        public List<PowerItem> Parent = new List<PowerItem>();
         public Vector3i Position;
-        public PowerItem Root;
+        public List<PowerItem> Root;
         public ushort Depth = ushort.MaxValue;
         public ushort BlockID;
         protected bool hasChangesLocal;
@@ -52,9 +52,9 @@ namespace SampleProject.Scripts {
         public virtual List<PowerItem> GetRoot()
         {
             List<PowerItem> retval = new List<PowerItem>();
-            if (this.Parents.Count != 0)
+            if (this.Parent.Count != 0)
             {
-                foreach (PowerItem Parent in this.Parents)
+                foreach (PowerItem Parent in this.Parent)
                 {
                     retval.Append(Parent.GetRoot());
                 }
@@ -90,9 +90,9 @@ namespace SampleProject.Scripts {
         {
             _bw.Write(this.BlockID);
             StreamUtils.Write(_bw, this.Position);
-            _bw.Write(this.Parents.Count != 0);
-            if (this.Parents.Count != 0)
-                foreach(PowerItem parent in this.Parents)
+            _bw.Write(this.Parent.Count != 0);
+            if (this.Parent.Count != 0)
+                foreach(PowerItem parent in this.Parent)
                     StreamUtils.Write(_bw, parent.Position);
             _bw.Write((byte)this.Children.Count);
             for (int index = 0; index < this.Children.Count; ++index)
@@ -217,9 +217,9 @@ namespace SampleProject.Scripts {
         public void SendHasLocalChangesToRoot()
         {
             this.hasChangesLocal = true;
-            foreach (PowerItem parents in this.Parents)
+            foreach (PowerItem parents in this.Parent)
                 for (PowerItem parent = parents; parent != null; parent = parent.Parent)
-                    parent.hasChangesLocal = true;
+                    parent.SendHasLocalChangesToRoot();
         }
 
         public enum PowerItemTypes
