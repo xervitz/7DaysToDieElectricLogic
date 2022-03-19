@@ -12,7 +12,6 @@ namespace SampleProject.Scripts {
         protected MultiParentPowerItem PowerItem;
         public MultiParentPowerItem.PowerItemTypes PowerItemType = MultiParentPowerItem.PowerItemTypes.Trigger;
         public Vector3 WireOffset = Vector3.zero;
-        public MultiParentTileEntityPowered(Chunk _chunk) : base(_chunk) { }
         private bool activateDirty;
         protected bool wiresDirty;
         private bool needBlockData;
@@ -20,6 +19,8 @@ namespace SampleProject.Scripts {
         private Transform blockTransform;
         private List<IWireNode> currentWireNodes = new List<IWireNode>();
         private Vector3i parentPosition = new Vector3i(-9999, -9999, -9999);
+
+        public MultiParentTileEntityPowered(Chunk _chunk) : base(_chunk) { }
 
         public Transform BlockTransform {
             get => this.blockTransform;

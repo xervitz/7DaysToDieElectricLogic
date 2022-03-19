@@ -15,6 +15,7 @@ public class BlockAndGate : BlockPowered {
     }
     public new MultiParentTileEntityPowered CreateTileEntity(Chunk chunk) {
         MultiParentTileEntityPowered tileEntity = new MultiParentTileEntityPowered(chunk);
+        Log.Out("I did it. I did the thing. " + );
         tileEntity.PowerItemType = MultiParentPowerItem.PowerItemTypes.AndGate;
         return tileEntity;
     }
