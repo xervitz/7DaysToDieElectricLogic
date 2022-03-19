@@ -9,8 +9,8 @@ using UnityEngine;
 namespace SampleProject.Scripts {
     class MultiParentTileEntityPowered : TileEntity, IPowered {
         private List<Vector3i> wireDataList = new List<Vector3i>();
-        protected PowerItem PowerItem;
-        public PowerItem.PowerItemTypes PowerItemType = PowerItem.PowerItemTypes.Trigger;
+        protected MultiParentPowerItem PowerItem;
+        public MultiParentPowerItem.PowerItemTypes PowerItemType = MultiParentPowerItem.PowerItemTypes.Trigger;
         public Vector3 WireOffset = Vector3.zero;
         public MultiParentTileEntityPowered(Chunk _chunk) : base(_chunk) { }
         private bool activateDirty;

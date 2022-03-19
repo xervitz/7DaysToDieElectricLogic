@@ -166,31 +166,31 @@ namespace SampleProject.Scripts {
                 this.Children[index].HandleDisconnect();
         }
 
-        public static PowerItem CreateItem(PowerItem.PowerItemTypes itemType)
+        public static PowerItem CreateItem(MultiParentPowerItem.PowerItemTypes itemType)
         {
             switch (itemType)
             {
-                case PowerItem.PowerItemTypes.Consumer:
+                case MultiParentPowerItem.PowerItemTypes.Consumer:
                     return (PowerItem)new PowerConsumer();
-                case PowerItem.PowerItemTypes.ConsumerToggle:
+                case MultiParentPowerItem.PowerItemTypes.ConsumerToggle:
                     return (PowerItem)new PowerConsumerToggle();
-                case PowerItem.PowerItemTypes.Trigger:
+                case MultiParentPowerItem.PowerItemTypes.Trigger:
                     return (PowerItem)new PowerTrigger();
-                case PowerItem.PowerItemTypes.Timer:
+                case MultiParentPowerItem.PowerItemTypes.Timer:
                     return (PowerItem)new PowerTimerRelay();
-                case PowerItem.PowerItemTypes.Generator:
+                case MultiParentPowerItem.PowerItemTypes.Generator:
                     return (PowerItem)new PowerGenerator();
-                case PowerItem.PowerItemTypes.SolarPanel:
+                case MultiParentPowerItem.PowerItemTypes.SolarPanel:
                     return (PowerItem)new PowerSolarPanel();
-                case PowerItem.PowerItemTypes.BatteryBank:
+                case MultiParentPowerItem.PowerItemTypes.BatteryBank:
                     return (PowerItem)new PowerBatteryBank();
-                case PowerItem.PowerItemTypes.RangedTrap:
+                case MultiParentPowerItem.PowerItemTypes.RangedTrap:
                     return (PowerItem)new PowerRangedTrap();
-                case PowerItem.PowerItemTypes.ElectricWireRelay:
+                case MultiParentPowerItem.PowerItemTypes.ElectricWireRelay:
                     return (PowerItem)new PowerElectricWireRelay();
-                case PowerItem.PowerItemTypes.TripWireRelay:
+                case MultiParentPowerItem.PowerItemTypes.TripWireRelay:
                     return (PowerItem)new PowerTripWireRelay();
-                case PowerItem.PowerItemTypes.PressurePlate:
+                case MultiParentPowerItem.PowerItemTypes.PressurePlate:
                     return (PowerItem)new PowerPressurePlate();
                 default:
                     return new PowerItem();
@@ -222,7 +222,7 @@ namespace SampleProject.Scripts {
                     parent.SendHasLocalChangesToRoot();
         }
 
-        public enum PowerItemTypes
+        public new enum PowerItemTypes
         {
             None,
             Consumer,
