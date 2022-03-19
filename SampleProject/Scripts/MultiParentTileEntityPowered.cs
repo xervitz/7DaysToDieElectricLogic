@@ -131,34 +131,34 @@ namespace SampleProject.Scripts {
                 for (int index2 = 0; index2 < this.wireDataList.Count; ++index2) {
                     Vector3i wireData = this.wireDataList[index2];
                     if (GameManager.Instance.World.GetChunkFromWorldPos(wireData) is Chunk chunkFromWorldPos) {
-                        TileEntityPowered tileEntity = GameManager.Instance.World.GetTileEntity(chunkFromWorldPos.ClrIdx, wireData) as TileEntityPowered;
-                        if (!SingletonMonoBehaviour<ConnectionManager>.Instance.IsServer || !GameManager.IsDedicatedServer || tileEntity == null || this.PowerItemType == PowerItem.PowerItemTypes.TripWireRelay && tileEntity.PowerItemType == PowerItem.PowerItemTypes.TripWireRelay) {
+                        MultiParentTileEntityPowered tileEntity = GameManager.Instance.World.GetTileEntity(chunkFromWorldPos.ClrIdx, wireData) as MultiParentTileEntityPowered;
+                        if (!SingletonMonoBehaviour<ConnectionManager>.Instance.IsServer || !GameManager.IsDedicatedServer || tileEntity == null || this.PowerItemType == MultiParentPowerItem.PowerItemTypes.TripWireRelay && tileEntity.PowerItemType == MultiParentPowerItem.PowerItemTypes.TripWireRelay) {
                             if (index1 >= this.currentWireNodes.Count)
                                 this.currentWireNodes.Add(WireManager.Instance.GetWireNodeFromPool());
                             this.currentWireNodes[index1].SetStartPosition(this.BlockTransform.position + Origin.position);
                             this.currentWireNodes[index1].SetStartPositionOffset(this.WireOffset);
                             if (tileEntity != null) {
-                                if (this.PowerItemType == PowerItem.PowerItemTypes.ElectricWireRelay && tileEntity.PowerItemType == PowerItem.PowerItemTypes.ElectricWireRelay) {
+                                if (this.PowerItemType == MultiParentPowerItem.PowerItemTypes.ElectricWireRelay && tileEntity.PowerItemType == MultiParentPowerItem.PowerItemTypes.ElectricWireRelay) {
                                     this.currentWireNodes[index1].SetPulseColor((Color)new Color32((byte)0, (byte)97, byte.MaxValue, byte.MaxValue));
                                     this.currentWireNodes[index1].SetWireRadius(0.005f);
                                     this.currentWireNodes[index1].SetWireDip(0.0f);
                                     ElectricWireController electricWireController = this.currentWireNodes[index1].GetGameObject().GetComponent<ElectricWireController>();
                                     if ((UnityEngine.Object)electricWireController == (UnityEngine.Object)null)
                                         electricWireController = this.currentWireNodes[index1].GetGameObject().AddComponent<ElectricWireController>();
-                                    electricWireController.TileEntityParent = this as TileEntityPoweredMeleeTrap;
-                                    electricWireController.TileEntityChild = tileEntity as TileEntityPoweredMeleeTrap;
+                                    //electricWireController.TileEntityParent = this as TileEntityPoweredMeleeTrap;
+                                    //electricWireController.TileEntityChild = tileEntity as TileEntityPoweredMeleeTrap;
                                     electricWireController.WireNode = this.currentWireNodes[index1];
                                     electricWireController.Init(this.chunk.GetBlock(this.localChunkPos).Block.Properties);
                                 }
-                                else if (this.PowerItemType == PowerItem.PowerItemTypes.TripWireRelay && tileEntity.PowerItemType == PowerItem.PowerItemTypes.TripWireRelay) {
+                                else if (this.PowerItemType == MultiParentPowerItem.PowerItemTypes.TripWireRelay && tileEntity.PowerItemType == MultiParentPowerItem.PowerItemTypes.TripWireRelay) {
                                     this.currentWireNodes[index1].SetPulseColor(Color.magenta);
                                     this.currentWireNodes[index1].SetWireRadius(0.0035f);
                                     this.currentWireNodes[index1].SetWireDip(0.0f);
                                     TripWireController tripWireController = this.currentWireNodes[index1].GetGameObject().GetComponent<TripWireController>();
                                     if ((UnityEngine.Object)tripWireController == (UnityEngine.Object)null)
                                         tripWireController = this.currentWireNodes[index1].GetGameObject().AddComponent<TripWireController>();
-                                    tripWireController.TileEntityParent = this as TileEntityPoweredTrigger;
-                                    tripWireController.TileEntityChild = tileEntity as TileEntityPoweredTrigger;
+                                    //tripWireController.TileEntityParent = this as TileEntityPoweredTrigger;
+                                    //tripWireController.TileEntityChild = tileEntity as TileEntityPoweredTrigger;
                                     tripWireController.WireNode = this.currentWireNodes[index1];
                                 }
                                 else {
@@ -199,17 +199,21 @@ namespace SampleProject.Scripts {
 
         public void RemoveParentWithWiringTool(int wiringEntityID) {
             if (SingletonMonoBehaviour<ConnectionManager>.Instance.IsServer) {
-                if (this.PowerItem.Parent != null) {
-                    Vector3i position = this.PowerItem.Parent.Position;
-                    PowerItem parent = this.PowerItem.Parent;
-                    this.PowerItem.RemoveSelfFromParent();
-                    if (parent.TileEntity != null) {
-                        parent.TileEntity.CreateWireDataFromPowerItem();
-                        parent.TileEntity.SendWireData();
-                        parent.TileEntity.RemoveWires();
-                        parent.TileEntity.DrawWires();
+                if (this.PowerItem.Parent.Count != 0) {
+                    List<PowerItem> parents = this.PowerItem.Parent;
+                    foreach (PowerItem parent in parents)
+                    {
+                        Vector3i position = parent.Position;
+                        this.PowerItem.RemoveSelfFromParent();
+                        if (parent.TileEntity != null)
+                        {
+                            parent.TileEntity.CreateWireDataFromPowerItem();
+                            parent.TileEntity.SendWireData();
+                            parent.TileEntity.RemoveWires();
+                            parent.TileEntity.DrawWires();
+                        }
+                        Manager.BroadcastPlay(position.ToVector3(), this.PowerItem.IsPowered ? "wire_live_break" : "wire_dead_break");
                     }
-                    Manager.BroadcastPlay(position.ToVector3(), this.PowerItem.IsPowered ? "wire_live_break" : "wire_dead_break");
                 }
             }
             else {
@@ -235,7 +239,7 @@ namespace SampleProject.Scripts {
         }
 
         public void SetParentWithWireTool(IPowered newParentTE, int wiringEntityID) {
-            if (SingletonMonoBehaviour<ConnectionManager>.Instance.IsServer) {
+            /*if (SingletonMonoBehaviour<ConnectionManager>.Instance.IsServer) {
                 PowerItem powerItem = newParentTE.GetPowerItem();
                 PowerItem parent = this.PowerItem.Parent;
                 PowerManager.Instance.SetParent(this.PowerItem, powerItem);
@@ -262,7 +266,7 @@ namespace SampleProject.Scripts {
                 NetPackageWireActions _package = package.Setup(NetPackageWireActions.WireActions.SetParent, worldPos, _wireChildren, wiringEntity);
                 instance.SendToServer((NetPackage)_package);
             }
-            this.SetModified();
+            this.SetModified();*/
         }
 
         public void SetWireData(List<Vector3i> wireChildren) {
