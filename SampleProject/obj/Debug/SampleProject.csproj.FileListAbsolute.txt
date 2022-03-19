@@ -9,3 +9,9 @@ D:\A20TutorialProject\A20TutorialProject\Assets\SampleMod\SampleProject\obj\Debu
 D:\A20TutorialProject\A20TutorialProject\Assets\SampleMod\SampleProject\obj\Debug\SampleProject.csproj.CoreCompileInputs.cache
 D:\A20TutorialProject\A20TutorialProject\Assets\SampleMod\SampleProject\obj\Debug\SampleProject.dll
 D:\A20TutorialProject\A20TutorialProject\Assets\SampleMod\SampleProject\obj\Debug\SampleProject.pdb
+C:\7D2D\Custom\MyMods\MyMod\Mods\MangoSniper\SampleProject.dll
+C:\7D2D\Custom\MyMods\MyMod\Mods\MangoSniper\SampleProject.pdb
+C:\Users\noahr\source\repos\7DaysToDieElectricLogic\SampleProject\obj\Debug\SampleProject.csproj.AssemblyReference.cache
+C:\Users\noahr\source\repos\7DaysToDieElectricLogic\SampleProject\obj\Debug\SampleProject.csproj.CoreCompileInputs.cache
+C:\Users\noahr\source\repos\7DaysToDieElectricLogic\SampleProject\obj\Debug\SampleProject.dll
+C:\Users\noahr\source\repos\7DaysToDieElectricLogic\SampleProject\obj\Debug\SampleProject.pdb

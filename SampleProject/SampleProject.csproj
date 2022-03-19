@@ -69,6 +69,9 @@
     <Compile Include="Harmony\Examples.cs" />
     <Compile Include="Harmony\Init.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scripts\BlockAndGate.cs" />
+    <Compile Include="Scripts\MultiParentPowerItem.cs" />
+    <Compile Include="Scripts\MultiParentTileEntityPowered.cs" />
     <Compile Include="Scripts\MyElectricWire.cs" />
     <Compile Include="Scripts\MyBlock.cs" />
   </ItemGroup>
