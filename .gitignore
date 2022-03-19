@@ -35,7 +35,9 @@ ExportedObj/
 *.unityproj
 *.suo
 *.tmp
+*.csproj*
 *.user
+*.cache
 *.userprefs
 *.pidb
 *.booproj
