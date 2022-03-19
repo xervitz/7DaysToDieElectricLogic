@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace SampleProject.Scripts {
-    class BlockAndGate : BlockPowered {
+using SampleProject.Scripts;
+    public class BlockAndGate : BlockPowered {
 
         public new MultiParentTileEntityPowered CreateTileEntity(Chunk chunk) {
             MultiParentTileEntityPowered tileEntity = new MultiParentTileEntityPowered(chunk);
-            tileEntity.PowerItemType = PowerItem.PowerItemTypes.ElectricWireRelay;
+            tileEntity.PowerItemType = MultiParentPowerItem.PowerItemTypes.ElectricWireRelay;
             return tileEntity;
         }
 
@@ -23,4 +22,3 @@ namespace SampleProject.Scripts {
             _chunk.AddTileEntity((TileEntity)tileEntity);
         }
     }
-}
