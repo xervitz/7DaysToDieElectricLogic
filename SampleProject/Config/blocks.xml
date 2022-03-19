@@ -1,8 +1,77 @@
-﻿<configs>
-  <append xpath="/blocks">
-    <block name="MyBlock">
-      <property name="Extends" value="woodFrameBlock"/>
-      <property name="Class" value="MyBlock, SampleProject"/>
-    </block>
-  </append>
+<configs>
+	<append xpath="/blocks">
+		<block name="testBox">
+			<property name="CreativeMode" value="Player"/>
+			<property name="CustomIcon" value="MusicMango" />
+			<property name="Class" value="MyElectricWire, SampleProject"/>
+			<property name="UnlockedBy" value="perkAdvancedEngineering,electricfencepostSchematic"/>
+			<property name="Material" value="Mmetal"/>
+			<property name="StabilitySupport" value="true"/>
+			<property name="Shape" value="ModelEntity"/>
+			<property name="Mesh" value="models"/>
+			<property name="MaxDamage" value="200"/>
+			<property name="DamageReceived" value="0.5"/>
+			<property name="Model" value="#@modfolder:Resources/Cube.unity3d?TutorialCube"/>
+			<property name="HandleFace" value="Bottom"/>
+			<property name="DisplayType" value="blockElectricalMulti"/>
+			<property name="MultiBlockDim" value="1,1,1"/>
+			<property name="ImposterDontBlock" value="true"/>
+			<property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+			<property name="RequiredPower" value="5"/>
+			<property name="Buff" value="buffShocked"/>
+			<property name="BuffChance" value="1"/>
+			<property name="Group" value="Tools/Traps,Science"/>
+			<property class="RepairItems">
+				<property name="resourceForgedIron" value="4"/>
+				<property name="resourceElectricParts" value="1"/>
+			</property>
+			<drop event="Harvest" name="terrStone" count="0" tool_category="Disassemble"/>
+			<drop event="Harvest" name="resourceElectricParts" count="0,1" tag="salvageHarvest"/>
+			<drop event="Harvest" name="resourceScrapIron" count="5,40" tag="allHarvest"/>
+			<drop event="Destroy" count="0"/>
+			<drop event="Fall" name="scrapMetalPile" count="1" prob="0.75" stick_chance="1"/>
+			<property name="EconomicValue" value="62"/>
+			<property name="FilterTags" value="MC_playerBlocks,SC_electrical,SC_traps"/>
+			<property name="SortOrder1" value="70a0"/>
+		</block>
+		<block name="MyBlock">
+	      <property name="Extends" value="woodFrameBlock"/>
+	      <property name="Class" value="MyBlock, SampleProject"/>
+	      <property name="CustomIcon" value="brickMaster"/>
+	    </block>
+	    <block name="electricAndGate">
+	    	<property name="CreativeMode" value="Player"/>
+	    	<property name="Class" value="BlockAndGate, SampleProject"/>
+	    	<property name="CustomIcon" value="AndGateTexture"/>
+	    	<property name="UnlockedBy" value="perkAdvancedEngineering,electricfencepostSchematic"/>
+			<property name="Material" value="Mmetal"/>
+			<property name="StabilitySupport" value="true"/>
+			<property name="Shape" value="ModelEntity"/>
+			<property name="Mesh" value="models"/>
+			<property name="MaxDamage" value="200"/>
+			<property name="DamageReceived" value="0.5"/>a
+			<property name="Model" value="#@modfolder:Resources/AndGate.unity3d?AndGate"/>
+			<property name="HandleFace" value="Bottom"/>
+			<property name="DisplayType" value="blockElectricalMulti"/>
+			<property name="MultiBlockDim" value="1,1,1"/>
+			<property name="ImposterDontBlock" value="true"/>
+			<property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+			<property name="RequiredPower" value="5"/>
+			<property name="Buff" value="buffShocked"/>
+			<property name="BuffChance" value="1"/>
+			<property name="Group" value="Tools/Traps,Science"/>
+			<property class="RepairItems">
+				<property name="resourceForgedIron" value="4"/>
+				<property name="resourceElectricParts" value="1"/>
+			</property>
+			<drop event="Harvest" name="terrStone" count="0" tool_category="Disassemble"/>
+			<drop event="Harvest" name="resourceElectricParts" count="0,1" tag="salvageHarvest"/>
+			<drop event="Harvest" name="resourceScrapIron" count="5,40" tag="allHarvest"/>
+			<drop event="Destroy" count="0"/>
+			<drop event="Fall" name="scrapMetalPile" count="1" prob="0.75" stick_chance="1"/>
+			<property name="EconomicValue" value="62"/>
+			<property name="FilterTags" value="MC_playerBlocks,SC_electrical,SC_traps"/>
+			<property name="SortOrder1" value="70a0"/>
+	    </block>
+	</append>
 </configs>

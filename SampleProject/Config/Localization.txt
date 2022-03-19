@@ -1,0 +1,5 @@
+Key,Source,Context,Changes,English
+
+testBoxDesc,,blocks,Workstation,LARGE
+
+HDBeeHiveDesc,,blocks,Workstation,Craft this in the HD WorkBench And refine Bees for their honey.\n\nUses the following Addons. HD Honey Knife. HD Strainer. HD Extractor,

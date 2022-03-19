@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<xml>
-  <ModInfo>
-    <Name value="SampleProject" />
-    <Description value="Sample Project Mod" />
-    <Author value="sphereii" />
-    <Version value="20.0.0.0" />
-    <Website value="" />
-  </ModInfo>
-</xml>
+<?xml version="1.0" encoding="UTF-8"?>
+	<xml>
+		<ModInfo>
+			<Name value="MangoSniper"/>
+			<Description value="The largest tits so big. Trust me"/>
+			<Author value="LargeTittyGirl4Real"/>
+			<Version value="20.0.2.0" compat="A20e"/>
+			<Website value=""/>
+		</ModInfo>
+	</xml>

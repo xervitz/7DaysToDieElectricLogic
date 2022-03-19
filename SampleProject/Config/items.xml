@@ -1,0 +1,131 @@
+<configs>
+	<append xpath="/items">
+		<item name="gunBowT5AutoCrossbow">
+			<property name="Tags" value="weapon,ranged,holdBreathAiming,reloadPenalty,sideAttachments,smallTopAttachments,mediumTopAttachments,bottomAttachments,attAgility,perkArchery,crossbow,attachmentsIncluded,canHaveCosmetic"/>
+			<property name="DisplayType" value="rangedBow"/>
+			<property name="DescriptionKey" value="gunBowT1IronCrossbowDesc"/>
+			<property name="HoldType" value="69"/>
+			<property name="Meshfile" value="#@modfolder:Resources/AutoCrossbow.unity3d?autoCrossbow"/>
+			<property name="Material" value="MBowCrossbowParts"/> <property name="Weight" value="6"/>
+			<property name="RepairTools" value="resourceRockSmall"/>
+			<property name="EconomicValue" value="1000"/>
+			<property name="DegradationBreaksAfter" value="false"/>
+			<property name="SoundJammed" value="ItemNeedsRepair"/>
+			<property name="SoundDestroy" value="wooddestroy1"/>
+			<property name="CrosshairOnAim" value="true"/> <!-- aimTest -->
+			<property name="CrosshairUpAfterShot" value="true"/> <!-- aimTest -->
+			<property name="Sound_Sight_In" value="crossbow_sight_in"/>
+			<property name="Sound_Sight_Out" value="crossbow_sight_out"/>
+			<!-- <property name="SoundUnholster" value="crossbow2_unholster"/>  Custom unholster but sounds inconsistent when other weapons don't have custom ones -->
+			<!-- <property name="SoundHolster" value="crossbow2_holster"/> -->
+			<property name="Group" value="Ammo/Weapons,Ranged Weapons"/>
+			<property name="RepairExpMultiplier" value="5.5"/>
+			<property name="PickupJournalEntry" value="alternateAmmoTip"/>
+			<property name="UnlockedBy" value="gunBowT3CompoundCrossbowSchematic"/>
+			<property name="ShowQuality" value="true"/>
+			<property class="Action0">
+				<property name="Class" value="Launcher"/>
+				<property name="Delay" value=".8"/> <!-- obsolete if rounds per minute exists -->
+				<property name="Magazine_items" value="ammoArrowBigTittyDamage, ammoCrossbowBoltExploding"/>
+				<!-- <property name="Reload_time" value="4"/> -->
+				<property name="Sound_start" value="crossbow2_fire"/>
+				<property name="Sound_repeat" value=""/>
+				<property name="Sound_end" value=""/>
+				<property name="Sound_empty" value="dryfire"/>
+				<property name="Sound_reload" value="crossbow2_reload"/>
+				<property name="AutoReload" value="true"/>
+			</property>
+			<property class="Action1"> <!-- UseAction -->
+				<property name="Class" value="Zoom"/>
+				<property name="Zoom_max_out" value="55"/>
+				<property name="Zoom_max_in" value="55"/>
+			</property>
+			<effect_group name="gunBowT5AutoCrossbow">
+				<passive_effect name="DamageFalloffRange" operation="base_set" value="100000" tags="perkArchery"/>
+				<passive_effect name="DamageFalloffRange" operation="perc_add" value="-.2,.2" tags="perkArchery"/> <!-- random effective rng -->
+				<passive_effect name="EntityDamage" operation="base_add" value="25000" tags="perkArchery"/> <!-- damage offset -->
+				<passive_effect name="MaxRange" operation="base_set" value="100" tags="perkArchery"/>
+				<passive_effect name="MagazineSize" operation="base_set" value="1" tags="perkArchery"/>
+				<passive_effect name="ReloadSpeedMultiplier" operation="base_set" value="10" tags="perkArchery"/> <!-- 3.4s -->
+
+				<passive_effect name="EntityDamage" operation="perc_add" value="-.15,.15" tags="perkArchery"/> <!-- random EntityDmg -->
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1,.5" tier="2,6" tags="perkArchery"/> <!-- tier bonus -->
+				<passive_effect name="BlockDamage" operation="perc_add" value="-.15,.15" tags="perkArchery"/> <!-- random BlockDmg -->
+				<passive_effect name="BlockDamage" operation="perc_add" value=".1,.5" tier="2,6" tags="perkArchery"/> <!-- tier bonus -->
+				<passive_effect name="ProjectileVelocity" operation="perc_add" value="-.08,.08" tags="perkArchery"/> <!-- random Veloc -->
+
+				<passive_effect name="DegradationMax" operation="perc_add" value="-.2,.2" tags="perkArchery"/> <!-- random DegMax -->
+				<passive_effect name="WeaponHandling" operation="perc_add" value="-.08,.08" tags="perkArchery"/> <!-- random WeaponHandling -->
+
+				<passive_effect name="SpreadDegreesVertical" operation="base_set" value="0" tags="perkArchery"/>
+				<passive_effect name="SpreadDegreesHorizontal" operation="base_set" value="0" tags="perkArchery"/>
+				<passive_effect name="SpreadMultiplierAiming" operation="base_set" value="0" tags="perkArchery"/>
+				<passive_effect name="SpreadMultiplierCrouching" operation="base_set" value="0" tags="perkArchery"/>
+				<passive_effect name="SpreadMultiplierWalking" operation="base_set" value="0" tags="perkArchery"/>
+				<passive_effect name="SpreadMultiplierRunning" operation="base_set" value="0" tags="perkArchery"/>
+
+				<passive_effect name="IncrementalSpreadMultiplier" operation="base_set" value="0" tags="perkArchery"/>
+				<passive_effect name="WeaponHandling" operation="base_set" value="0" tags="perkArchery"/> <!-- crosshair reset speed -->
+
+				<passive_effect name="RoundsPerMinute" operation="base_set" value="150" tags="perkArchery"/>
+				<passive_effect name="BurstRoundCount" operation="base_set" value="1" tags="perkArchery"/>
+
+				<passive_effect name="KickDegreesVerticalMin" operation="base_set" value="0" tags="perkArchery"/>
+				<passive_effect name="KickDegreesVerticalMax" operation="base_set" value="0" tags="perkArchery"/>
+				<passive_effect name="KickDegreesHorizontalMin" operation="base_set" value="0" tags="perkArchery"/>
+				<passive_effect name="KickDegreesHorizontalMax" operation="base_set" value="0" tags="perkArchery"/>
+
+				<passive_effect name="DegradationMax" operation="base_set" value="120,250" tier="1,6" tags="perkArchery"/>
+				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkArchery"/>
+				<passive_effect name="ModSlots" operation="base_set" value="4,4,4,4,4,4" tier="1,2,3,4,5,6"/>
+				<passive_effect name="ModPowerBonus" operation="perc_add" value="10" tags="EntityDamage,BlockDamage"/>
+				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+			</effect_group>
+			<effect_group name="sneak damage bonus">
+				<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+				<requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
+					<passive_effect name="DamageBonus" operation="base_add" value="2"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value="2" tags="perkArchery"/>
+					<display_value name="dEntityDamageSneak" value="2"/>
+			</effect_group>
+		</item>
+		<item name="ammoArrowBigTittyDamage">
+			<property name="Extends" value="ammoCrossbowBoltIron"/>
+			<property name="DescriptionKey" value="ammoArrowExplodingDesc"/>
+			<property name="Tags" value="ammo,ranged,attAgility,perkArchery"/>
+			<property name="DisplayType" value="ammoArrowExploding"/>
+			<property name="Meshfile" value="#Other/Items?Weapons/Ranged/Bows/Arrows/bolt_explodingPrefab.prefab"/>
+			<property name="HoldType" value="45"/>
+			<property name="HandMeshfile" value="#Other/Items?Misc/sackPrefab.prefab"/>
+			<property name="DropMeshfile" value="#Other/Items?Misc/sack_droppedPrefab.prefab"/>
+			<property name="IsSticky" value="false"/>
+			<property name="Stacknumber" value="75"/>
+			<property name="EconomicValue" value="80"/>
+			<property name="EconomicBundleSize" value="1"/>
+			<property name="UnlockedBy" value="perkRangersExplodingBolts"/>
+			<property class="Action1">
+				<!--<property name="Explosion.ParticleIndex" value="0"/>  no expl. -->
+				<property name="Gravity" value="-1"/>
+				<property name="Explosion.ParticleIndex" value="11"/>
+				<property name="Explosion.RadiusBlocks" value="25"/>
+				<property name="Explosion.RadiusEntities" value="10"/>
+				<property name="Explosion.DamageBonus.stone" value="10"/>
+				<property name="Explosion.DamageBonus.metal" value="100"/>
+				<property name="Explosion.DamageBonus.earth" value="1"/> <!-- should work? -->
+				<property name="Explosion.DamageBonus.wood" value="1"/>
+				<property name="Explosion.DamageBonus.water" value="0"/>
+			</property>
+			<effect_group name="ammoArrowBigTittyDamage" tiered="false"> <!-- ammoCrossbowBoltExploding -->
+				<passive_effect name="BlockDamage" operation="base_set" value="2500" tags="perkArchery"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="5000" tags="perkArchery"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value="-.5" tags="wood"/>
+				<passive_effect name="DamageModifier" operation="perc_set" value=".1" tags="wood"/>
+				<passive_effect name="DamageModifier" operation="perc_set" value="0" tags="earth,water"/>
+					<!-- do we have damage modifiers for explosions? -->
+				<passive_effect name="ProjectileVelocity" operation="base_set" value="150" tags="perkArchery"/>
+				<passive_effect name="ProjectileStickChance" operation="perc_set" value="0"/>
+				<display_value name="dExRadius" value="10"/>
+			</effect_group>
+		</item>
+	</append>
+</configs>

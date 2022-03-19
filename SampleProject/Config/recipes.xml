@@ -1,0 +1,13 @@
+<configs>
+	<append xpath="/recipes">
+		<recipe name="smallEngine" count="1">
+			<ingredient name="resourceRockSmall" count="1"/>
+		</recipe>
+		<recipe name="testBox" count="1">
+			<ingredient name="resourceRockSmall" count="1"/>
+		</recipe>
+		<recipe name="ammoArrowBigTittyDamage" count="75">
+			<ingredient name="resourceRockSmall" count="1"/>
+		</recipe>
+	</append>
+</configs>

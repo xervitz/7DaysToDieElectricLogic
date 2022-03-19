@@ -8,27 +8,27 @@ using UnityEngine;
 
 namespace SampleProject.Scripts {
     public class MultiParentPowerItem : PowerItem {
-        public List<PowerItem> Parent = new List<PowerItem>();
-        public Vector3i Position;
-        public List<PowerItem> Root;
-        public ushort Depth = ushort.MaxValue;
-        public ushort BlockID;
-        protected bool hasChangesLocal;
-        public ushort RequiredPower = 5;
-        public List<PowerItem> Children = new List<PowerItem>();
-        public MultiParentTileEntityPowered TileEntity;
-        protected bool isPowered;
+        public new List<PowerItem> Parent = new List<PowerItem>();
+        public new Vector3i Position = new Vector3i(9,7,0);
+        public new List<PowerItem> Root;
+        public new ushort Depth = ushort.MaxValue;
+        public new ushort BlockID;
+        protected new bool hasChangesLocal;
+        public new ushort RequiredPower = 5;
+        public new List<PowerItem> Children = new List<PowerItem>();
+        public new MultiParentTileEntityPowered TileEntity;
+        protected new bool isPowered;
 
-        public virtual bool IsPowered => this.isPowered;
+        public new virtual bool IsPowered => this.isPowered;
 
         public MultiParentPowerItem() {
         }
 
-        public virtual bool CanParent(PowerItem newParent) => true;
+        public new virtual bool CanParent(PowerItem newParent) => true;
 
-        public virtual int InputCount => 1;
+        public new virtual int InputCount => 1;
 
-        public virtual PowerItem.PowerItemTypes PowerItemType => PowerItem.PowerItemTypes.Consumer;
+        public new virtual PowerItem.PowerItemTypes PowerItemType => PowerItem.PowerItemTypes.Consumer;
 
         public virtual void AddTileEntity(MultiParentTileEntityPowered tileEntityPowered)
         {
@@ -49,7 +49,7 @@ namespace SampleProject.Scripts {
     
         // public virtual PowerItem GetRoot() => this.Parents != null ? this.Parents.GetRoot() : this;
 
-        public virtual List<PowerItem> GetRoot()
+        public new virtual List<PowerItem> GetRoot()
         {
             List<PowerItem> retval = new List<PowerItem>();
             if (this.Parent.Count != 0)
@@ -67,7 +67,7 @@ namespace SampleProject.Scripts {
         }
 
 
-        public virtual void read(BinaryReader _br, byte _version)
+        public new virtual void read(BinaryReader _br, byte _version)
         {
             this.BlockID = _br.ReadUInt16();
             this.SetValuesFromBlock();
@@ -84,9 +84,9 @@ namespace SampleProject.Scripts {
             }
         }
 
-        public void RemoveSelfFromParent() => PowerManager.Instance.RemoveParent(this);
+        public new void RemoveSelfFromParent() => PowerManager.Instance.RemoveParent(this);
 
-        public virtual void write(BinaryWriter _bw)
+        public new virtual void write(BinaryWriter _bw)
         {
             _bw.Write(this.BlockID);
             StreamUtils.Write(_bw, this.Position);
@@ -102,13 +102,13 @@ namespace SampleProject.Scripts {
             }
         }
 
-        public virtual bool PowerChildren() => true;
+        public new virtual bool PowerChildren() => true;
 
-        protected virtual void IsPoweredChanged(bool newPowered)
+        protected new virtual void IsPoweredChanged(bool newPowered)
         {
         }
 
-        public virtual void HandlePowerReceived(ref ushort power)
+        public new virtual void HandlePowerReceived(ref ushort power)
         {
             ushort num = (ushort)Mathf.Min((int)this.RequiredPower, (int)power);
             bool newPowered = (int)num == (int)this.RequiredPower;
@@ -152,11 +152,11 @@ namespace SampleProject.Scripts {
             return false;
         }
 
-        public virtual void HandlePowerUpdate(bool isOn)
+        public new virtual void HandlePowerUpdate(bool isOn)
         {
         }
 
-        public virtual void HandleDisconnect()
+        public new virtual void HandleDisconnect()
         {
             if (this.isPowered)
                 this.IsPoweredChanged(false);
@@ -177,7 +177,7 @@ namespace SampleProject.Scripts {
             }
         }
 
-        public virtual void SetValuesFromBlock()
+        public new virtual void SetValuesFromBlock()
         {
             Block block = Block.list[(int)this.BlockID];
             if (!block.Properties.Values.ContainsKey("RequiredPower"))
@@ -185,7 +185,7 @@ namespace SampleProject.Scripts {
             this.RequiredPower = ushort.Parse(block.Properties.Values["RequiredPower"]);
         }
 
-        public void ClearChildren()
+        public new void ClearChildren()
         {
             for (int index = 0; index < this.Children.Count; ++index)
                 PowerManager.Instance.RemoveChild(this.Children[index]);
@@ -194,7 +194,7 @@ namespace SampleProject.Scripts {
             this.TileEntity.DrawWires();
         }
 
-        public void SendHasLocalChangesToRoot()
+        public new void SendHasLocalChangesToRoot()
         {
             this.hasChangesLocal = true;
             foreach (PowerItem parents in this.Parent)
