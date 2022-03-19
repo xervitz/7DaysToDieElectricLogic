@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 namespace SampleProject.Scripts {
-    class MultiParentPowerItem : PowerItem {
+    public class MultiParentPowerItem : PowerItem {
         public List<PowerItem> Parent = new List<PowerItem>();
         public Vector3i Position;
         public List<PowerItem> Root;
@@ -170,28 +170,8 @@ namespace SampleProject.Scripts {
         {
             switch (itemType)
             {
-                case MultiParentPowerItem.PowerItemTypes.Consumer:
-                    return (MultiParentPowerItem)new PowerConsumer();
-                case MultiParentPowerItem.PowerItemTypes.ConsumerToggle:
-                    return (MultiParentPowerItem)new PowerConsumerToggle();
-                case MultiParentPowerItem.PowerItemTypes.Trigger:
-                    return (MultiParentPowerItem)new PowerTrigger();
-                case MultiParentPowerItem.PowerItemTypes.Timer:
-                    return (MultiParentPowerItem)new PowerTimerRelay();
-                case MultiParentPowerItem.PowerItemTypes.Generator:
-                    return (MultiParentPowerItem)new PowerGenerator();
-                case MultiParentPowerItem.PowerItemTypes.SolarPanel:
-                    return (MultiParentPowerItem)new PowerSolarPanel();
-                case MultiParentPowerItem.PowerItemTypes.BatteryBank:
-                    return (MultiParentPowerItem)new PowerBatteryBank();
-                case MultiParentPowerItem.PowerItemTypes.RangedTrap:
-                    return (MultiParentPowerItem)new PowerRangedTrap();
-                case MultiParentPowerItem.PowerItemTypes.ElectricWireRelay:
-                    return (MultiParentPowerItem)new PowerElectricWireRelay();
-                case MultiParentPowerItem.PowerItemTypes.TripWireRelay:
-                    return (MultiParentPowerItem)new PowerTripWireRelay();
-                case MultiParentPowerItem.PowerItemTypes.PressurePlate:
-                    return (MultiParentPowerItem)new PowerPressurePlate();
+                case MultiParentPowerItem.PowerItemTypes.AndGate:
+                    return new PowerBlockAndGate();
                 default:
                     return new MultiParentPowerItem();
             }
@@ -236,6 +216,7 @@ namespace SampleProject.Scripts {
             ElectricWireRelay,
             TripWireRelay,
             PressurePlate,
+            AndGate,
         }
     }
 }

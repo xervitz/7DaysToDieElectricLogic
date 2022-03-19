@@ -74,6 +74,7 @@
     <Compile Include="Scripts\MultiParentTileEntityPowered.cs" />
     <Compile Include="Scripts\MyElectricWire.cs" />
     <Compile Include="Scripts\MyBlock.cs" />
+    <Compile Include="Scripts\PowerBlocKAndGate.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 namespace SampleProject.Scripts {
-    class MultiParentTileEntityPowered : TileEntity, IPowered {
+    public class MultiParentTileEntityPowered : TileEntity, IPowered {
         private List<Vector3i> wireDataList = new List<Vector3i>();
         protected MultiParentPowerItem PowerItem;
         public MultiParentPowerItem.PowerItemTypes PowerItemType = MultiParentPowerItem.PowerItemTypes.Trigger;
