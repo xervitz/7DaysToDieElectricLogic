@@ -225,6 +225,8 @@ namespace SampleProject.Scripts {
             this.currentWireNodes.Clear();
         }
 
+        public virtual bool Activate(bool activated) => false;
+        public virtual bool ActivateOnce() => false;
         public void SendWireData() {
             if (SingletonMonoBehaviour<ConnectionManager>.Instance.IsServer)
                 SingletonMonoBehaviour<ConnectionManager>.Instance.SendPackage((NetPackage)NetPackageManager.GetPackage<NetPackageWireActions>().Setup(NetPackageWireActions.WireActions.SendWires, this.ToWorldPos(), this.wireDataList));
