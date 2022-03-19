@@ -1,0 +1,11 @@
+C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\Mods\SampleProject\obj\Debug\SampleProject.csproj.CoreCompileInputs.cache
+C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\Mods\SampleProject\obj\Debug\SampleProject.dll
+C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\Mods\SampleProject\obj\Debug\SampleProject.pdb
+C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\Mods\SampleProject\SampleProject.dll
+C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\Mods\SampleProject\SampleProject.pdb
+D:\7D2D\Custom\MyMods\MyMod\Mods\MangoSniper\SampleProject.dll
+D:\7D2D\Custom\MyMods\MyMod\Mods\MangoSniper\SampleProject.pdb
+D:\A20TutorialProject\A20TutorialProject\Assets\SampleMod\SampleProject\obj\Debug\SampleProject.csprojAssemblyReference.cache
+D:\A20TutorialProject\A20TutorialProject\Assets\SampleMod\SampleProject\obj\Debug\SampleProject.csproj.CoreCompileInputs.cache
+D:\A20TutorialProject\A20TutorialProject\Assets\SampleMod\SampleProject\obj\Debug\SampleProject.dll
+D:\A20TutorialProject\A20TutorialProject\Assets\SampleMod\SampleProject\obj\Debug\SampleProject.pdb
