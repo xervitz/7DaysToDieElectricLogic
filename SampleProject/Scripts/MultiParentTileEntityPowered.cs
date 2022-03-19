@@ -55,7 +55,7 @@ namespace SampleProject.Scripts {
                 return;
             ushort blockID = (ushort)GameManager.Instance.World.GetBlock(this.ToWorldPos()).type;
             if (SingletonMonoBehaviour<ConnectionManager>.Instance.IsServer) {
-                this.PowerItem = PowerManager.Instance.GetPowerItemByWorldPos(this.ToWorldPos());
+                this.PowerItem = (MultiParentPowerItem)PowerManager.Instance.GetPowerItemByWorldPos(this.ToWorldPos());
                 if (this.PowerItem == null)
                     this.CreatePowerItemForTileEntity(blockID);
                 else
@@ -76,7 +76,7 @@ namespace SampleProject.Scripts {
             else
                 this.RequiredPower = 5;
         }
-        public PowerItem CreatePowerItemForTileEntity(ushort blockID) {
+        public MultiParentPowerItem CreatePowerItemForTileEntity(ushort blockID) {
             if (this.PowerItem == null) {
                 this.PowerItem = this.CreatePowerItem();
                 this.PowerItem.Position = this.ToWorldPos();
@@ -87,7 +87,7 @@ namespace SampleProject.Scripts {
             return this.PowerItem;
         }
 
-        protected virtual PowerItem CreatePowerItem() => PowerItem.CreateItem(this.PowerItemType);
+        protected virtual MultiParentPowerItem CreatePowerItem() => MultiParentPowerItem.CreateItem(this.PowerItemType);
         public void AddWireData(Vector3i child) {
             this.wireDataList.Add(child);
             this.SendWireData();
